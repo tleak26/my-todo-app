@@ -1,8 +1,12 @@
-FILEPATH = "todos.txt"
+import os
+
+FILEPATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "todos.txt")
 
 
 def get_todos(filepath=FILEPATH):
     """ Read a text file and return the list of to-do items. """
+    if not os.path.exists(filepath):
+        return []
     with open(filepath, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
